@@ -5,7 +5,7 @@ Esse repositório foi criado com a finalidade de armazenar o trabalho do Projeto
 O objetivo desse projeto foi mostrar as habilidades adquiridas durante o 4º período, como o uso do MS Project, PHP e MySQL, Bootstrap, Jquery, Edição de Imagens.
 Esse sistema NÃO foi feito exclusivamente por mim, mas também pelos meus colegas de classe:
   
-  Márcio Fliess (marciocfliess@gmail.com / https://github.com/zaDoktah)
+  Márcio Fliess (marciocfliess@gmail.com / [zaDoktah](https://github.com/zaDoktah).)
   André Luiz Ferreira (drecontato11@gmail.com)
   Rafaela Oliveira (RafaelaO323@gmail.com)
   
