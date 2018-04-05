@@ -13,7 +13,7 @@ Esse sistema NÃO foi feito exclusivamente por mim, mas também pelos meus coleg
   
   - Eu, Caio Torres (caiocftorres@gmail.com / [yulken](https://github.com/yulken))
   - Márcio Fliess (marciocfliess@gmail.com / [zaDoktah](https://github.com/zaDoktah))
-  - André Luiz Ferreira (drecontato11@gmail.com)
+  - André Luiz Ferreira (drecontato11@gmail.com / [str3lk4](https://github.com/str3lk4))
   - Rafaela Oliveira (RafaelaO323@gmail.com)
   
 
