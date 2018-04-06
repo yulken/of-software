@@ -1,0 +1,90 @@
+.t-produtos {
+  z-index: 3;
+  position: relative;
+}
+
+.cartao {
+  position: relative;
+}
+
+.cartao-corpo, .cartao-corpo:focus{
+  height: 50%;
+  width: 100%;
+  padding-top: 50px;
+  border-radius: 5px;
+  position: absolute;
+  clip: rect(0, 300px, 80px, 0px);
+  bottom: 0;
+  left: 0;
+  transition: clip 0.5s, top 1s;
+  transition-timing-function: ease-in;
+}
+
+/* .cartao-corpo:focus, .cartao-corpo:hover {
+  clip: rect(0, 300px, 400px, 0px);
+  top: 100px;
+  transition: top 1s, clip 2s;
+  transition-timing-function: ease-out;
+} */
+
+.flutua{
+  clip: rect(0, 300px, 400px, 0px);
+  top: 100px;
+  transition: top 1s, clip 2s;
+  transition-timing-function: ease-out;
+}
+.mini-cartao-corpo{
+  position: absolute;
+  height: 15%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  border-radius: 5px;
+
+}
+.cartao-corpo h4 {
+  padding-top: 25px;
+}
+
+#fader {
+  position: absolute;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.unfaded {
+  transition: background 0.2s;
+}
+
+.faded {
+  background-color: #444;
+  z-index: 2;
+  transition: background 0.2s;
+}
+
+.cartao-corpo{
+  display: none;
+}
+
+.mini-cartao-corpo{
+  display: block;
+}
+
+@media (min-width: 576px) {
+  .cartao-corpo {
+    top: 320px;
+  }
+  .cartao-corpo:hover {
+  }
+  .flutua{
+    top: 150px;
+
+  }
+  .cartao-corpo{
+    display: block;
+  }
+  .mini-cartao-corpo{
+    display: none;
+  }
+
+}
