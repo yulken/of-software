@@ -109,7 +109,7 @@ if (mysqli_num_rows($res_jogos) > 0) {
     }
 } else {
     echo  "<div class='mx-auto text-center'>
-        <h1 class='font-italic'>\"Ai! Nada aconteceu...\"</h2>
+        <h1 class='font-italic'>\"Ai! Nada aconteceu... ¯\_(ツ)_/¯\"</h2>
         <h3 class='pt-4'>Embora tenhamos uma vasta coleção de jogos, a sua escolha de filtros não retornou nada. <br /> Um dia iremos resolver esse problema! 😅</h3>
       </div>";
 }
