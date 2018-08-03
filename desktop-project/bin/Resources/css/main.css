@@ -1,0 +1,38 @@
+.bt{
+	/* -fx-color NÃO existe! Em vez disso é -fx-text-fill. I know... it sucks */
+	-fx-text-fill: #FFFFFF;
+	-fx-font-weight: bold;
+	-fx-font-size: 18px;
+}
+.bt-blue{-fx-background-color: #007bff;}
+.bt-green{-fx-background-color: #28a745;}
+
+.menu-bar{
+	-fx-background-color: white;
+}
+.lbl{
+	-fx-font-family: "Verdana";
+	-fx-font-size: 18px;
+	-fx-padding: 0 0 0 2em;
+}
+.footer-lbl{
+	-fx-font-family: "Verdana";
+	-fx-font-size: 14px;
+}
+.main{
+	-fx-alignment: center;
+	
+}
+.games-list{
+	-fx-font-family: "Verdana";
+	-fx-font-size: 14px;
+}
+#btnEnvio{
+	-fx-halignment: baseline-center;
+}
+.pane{
+	-fx-background-color: #babaca;
+	-fx-background-radius: 5px;
+	-fx-padding: 0 0 0 2em;
+	
+}

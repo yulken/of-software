@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ofsoftware.controller.MainController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0">
+      <bottom>
+        <GridPane prefHeight="40.0" prefWidth="200.0" styleClass="main">
+          <children>
+            <Label styleClass="footer-lbl" text="Of Software © - 2018" />
+          </children>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+        </GridPane>
+      </bottom>
+      <center>
+        <BorderPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="200.0" prefWidth="200.0">
+          <center>
+            <Label fx:id="txtWelcome" styleClass="lbl" text="" />
+          </center>
+          <left>
+            <GridPane fx:id="gridLista" maxHeight="1.7976931348623157E308" prefWidth="200.0">
+              <children>
+                <Label styleClass="games-list" text="Meus Jogos" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="200.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          </left>
+        </BorderPane>
+      </center>
+      <stylesheets>
+        <URL value="@../css/main.css" />
+      </stylesheets>
+      <top>
+        <MenuBar maxWidth="1.7976931348623157E308" rotate="0.0">
+          <menus>
+            <Menu mnemonicParsing="false" text="Root">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Desconectar" />
+                <MenuItem fx:id="itemClose" mnemonicParsing="false" text="Sair" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Exibir">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Biblioteca" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Opções">
+              <items>
+                <MenuItem mnemonicParsing="false" text="About" />
+              </items>
+            </Menu>
+          </menus>
+        </MenuBar>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

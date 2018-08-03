@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="450.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ofsoftware.controller.CadastroController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <BorderPane layoutX="0.0" layoutY="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="450.0" rotate="0.0">
+      <bottom>
+        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="200.0" styleClass="main">
+          <children>
+            <Label styleClass="footer-lbl" text="Of Software © - 2018" />
+          </children>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+        </GridPane>
+      </bottom>
+      <center>
+        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="400.0" styleClass="main" BorderPane.alignment="CENTER" BorderPane.margin="$x1">
+          <children>
+            <Label styleClass="lbl" text="Nome:" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0" />
+            <Label styleClass="lbl" text="Login:" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <Label styleClass="lbl" text="Senha:" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+            <Label styleClass="lbl" text="Email:" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+            <Label styleClass="lbl" text="Telefone:" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+            <Label styleClass="lbl" text="CPF:" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
+            <TextField fx:id="txtNome" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" />
+            <TextField fx:id="txtLogin" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <PasswordField fx:id="txtSenha" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="btnEnvio" mnemonicParsing="false" onAction="#enviarDados" styleClass="bt, bt-green" text="Cadastrar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" onAction="#redirecionaLogin" styleClass="bt-blue, bt" text="Já tenho conta" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+          </children>
+          <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="150.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints fillHeight="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+      </center>
+      <stylesheets>
+        <URL value="@../css/main.css" />
+      </stylesheets>
+    </BorderPane>
+  </children>
+</AnchorPane>
