@@ -1,6 +1,6 @@
 $(document).ready(function() {
   //carrega album completo ao carregar a pagina
-  $('.album-list').load('scripts/carrega-album.php');
+  $('.album-list').load('carrega-album.php');
 
   function sidebarHeightAdjust() {
     var album = document.getElementsByClassName('album');
@@ -57,10 +57,10 @@ $(document).ready(function() {
   function pegaResultado(filtroPlat, filtroGen) {
     //envia o f:filtroData para o carrega-album e obtem a resposta
     var dados = {
-      filtroP: filtroPlat,
-      filtroG: filtroGen
+      filtro_p: filtroPlat,
+      filtro_g: filtroGen
     };
-    $.post('scripts/carrega-album.php', dados, function(resposta) {
+    $.post('carrega-album.php', dados, function(resposta) {
         $('.album-list').html(resposta);
       })
       .done(function() {
@@ -75,7 +75,7 @@ $(document).ready(function() {
       activate(this);
       //COMECO DO JSON
       var json;
-      x = $.getJSON("scripts/variaveis.php", function(result) {
+      x = $.getJSON("variaveis.php", function(result) {
           json = result;
         })
         .done(function acceptJSON() {

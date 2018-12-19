@@ -1,11 +1,9 @@
 <?php
 require('conexao.php');
 $sel_jogos = "SELECT * FROM mostra_tudo group BY nome_jogo";
-
 $isFiltroPlataformaAtivo = isset($_REQUEST['filtroP']);
 $isFiltroGeneroAtivo = isset($_REQUEST['filtroG']);
 $isFiltroAtivo = ($isFiltroPlataformaAtivo or $isFiltroGeneroAtivo);
-
 if ($isFiltroAtivo) {
     //FRAGMENTOS INICIAIS DE QUERIES
     $QuerySelect = "SELECT * FROM mostra_tudo WHERE";
@@ -15,7 +13,6 @@ if ($isFiltroAtivo) {
     $countTotal = $countPlataformas + $countGeneros;
     $currentCounter = 0;
     //FIM DE FRAGMENTOS INICIAIS DE QUERIES
-
     //FRAGMENTOS COMPLEMENTARES DO WHERE
     if ($isFiltroPlataformaAtivo) {
         $plataformas = $_REQUEST['filtroP'];
@@ -34,12 +31,10 @@ if ($isFiltroAtivo) {
             }
         }
     }
-
     if ($isFiltroGeneroAtivo and $isFiltroPlataformaAtivo) {
         $QueryAndOr = ($countPlataformas>0 and $countGeneros>0) ? " AND" : "";
         array_push($QueryArray, $QueryAndOr);
     }
-
     if ($isFiltroGeneroAtivo) {
         $generos = $_REQUEST['filtroG'];
         if ($countPlataformas>1 and $countGeneros>1) {
@@ -57,43 +52,35 @@ if ($isFiltroAtivo) {
             }
         }
     }
-
     //FIM DE FRAGMENTOS COMPLEMENTARES DO WHERE
     //FRAGMENTOS DA METADE DA QUERY
     $QueryGroup = " GROUP BY nome_jogo";
     array_push($QueryArray, $QueryGroup);
-
     if ($countPlataformas>1 or $countGeneros>1) {
         $QueryHaving = " HAVING";
         array_push($QueryArray, $QueryHaving);
     }
     //FIM DE FRAGMENTOS DA METADE DA QUERY
-
     //FRAGMENTOS COMPLEMENTARES DO HAVING
     if ($countPlataformas>1) {
         $limiter = $countPlataformas-1;
         $QueryHavingComplement = " COUNT(DISTINCT nome_plataforma) > $limiter";
         array_push($QueryArray, $QueryHavingComplement);
     }
-
     if ($countGeneros>1) {
         $limiter = $countGeneros-1;
         $QueryHavingComplement = (($countTotal - $countGeneros)>1) ? " AND COUNT(DISTINCT nome_genero) > $limiter" : " COUNT(DISTINCT nome_genero) > $limiter";
         array_push($QueryArray, $QueryHavingComplement);
     }
     //FIM DE FRAGMENTOS COMPLEMENTARES DO HAVING
-
-
     //CONCATENACAO DE TODOS OS FRAGMENTOS ADQUIRIDOS
     $QueryConcatenada="";
     for ($i=0; $i <sizeof($QueryArray) ; $i++) {
         $QueryConcatenada = $QueryConcatenada . $QueryArray[$i];
     }
     //FIM DE CONCATENACAO DE TODOS OS FRAGMENTOS ADQUIRIDOS
-
     $sel_jogos = $QueryConcatenada;
 }
-
 //JOGANDO A QUERY FILTRADA NO BANCO E RETORNANDO SEU RESULTADO
 $res_jogos = mysqli_query($conexao, $sel_jogos);
 if (mysqli_num_rows($res_jogos) > 0) {
