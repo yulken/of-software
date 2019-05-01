@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-
-  <?php require_once('head.php'); ?>
-  <link rel="stylesheet" href="css/custom.css">
-  <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/album.css">
+<?php require_once('head.php'); ?>
+<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="css/sidebar.css">
+<link rel="stylesheet" href="css/album.css">
 
 </head>
 

@@ -1,6 +1,6 @@
 <!-- CONTATOS!! -->
 <div class="carousel-item mt-5 mx-auto">
-    <form class="container text-white" action="scripts/efetua-contato.php" method="post">
+    <form class="container text-white" action="#" method="post">
 
     <div class="form-group">
         <label for="exampleFormControlInput1">Nome</label>

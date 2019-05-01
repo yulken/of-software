@@ -1,11 +1,5 @@
 <?php
-require_once('conexao.php');
-require_once('banco-jogo.php');
-require_once('banco-genero.php');
-require_once('banco-plataforma.php');
-require_once("class/Jogo.php");
-require_once("class/Plataforma.php");
-require_once("class/Galeria.php");
+require_once "global.php";
 
 $is_filtro_plataforma_ativo = isset($_REQUEST['filtro_p']);
 $is_filtro_genero_ativo = isset($_REQUEST['filtro_g']);
@@ -49,12 +43,15 @@ if ($is_filtro_ativo) {
     }
 }
 
-$sql_tudo = $sql_select . $sql_where . $sql_plataforma . $sql_and . $sql_genero . $sql_group . $sql_having;
-$response =  mysqli_query($conexao, $sql_tudo);
+$query = $sql_select . $sql_where . $sql_plataforma . $sql_and . $sql_genero . $sql_group . $sql_having;
+$conexao = Conexao::getConexao();
+$stmnt = $conexao->prepare($query);
+$stmnt->execute();
+$lista = $stmnt->fetchAll();
 $output = '';
-if (mysqli_num_rows($response) > 0) {
-    while ($dados_jogos = mysqli_fetch_array($response)) {
-        $jogo = buscaJogo($dados_jogos['id_jogo'], $conexao);
+if (sizeof($lista) > 0) {
+    foreach ($lista as $dados_jogos) {
+        $jogo = new Jogo($dados_jogos['id_jogo']);
         if ($jogo->getId() != 6) {
             $output .= '<div class="col-md-5 mx-4 bg-white mb-5 p-3 box-shadow mx-auto cartao">
     <a href="./produto.php?id=' . $jogo->getId() . '"><img class="mt-1 card-img-top img-cover-custom" src="img/capas/' . $jogo->getFoto() . '" alt="Card image cap"></a>

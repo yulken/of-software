@@ -1,32 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-  <?php require_once('head.php'); ?>
-  <link rel="stylesheet" href="css/standard.css">
-  <link rel="stylesheet" href="css/produto.css">
-  <link rel="stylesheet" href="css/fotorama.css">
+<?php
+  require_once 'global.php';
+  $idExibicao = $_REQUEST['id'];
+  $jogo = new Jogo($idExibicao);
+  $jogo->carregaGaleria();
+  $jogo->carregaPlataformas();
+  $jogo->carregaGeneros();
+?>
+<?php require_once('head.php'); ?>
+<link rel="stylesheet" href="css/standard.css">
+<link rel="stylesheet" href="css/produto.css">
+<link rel="stylesheet" href="css/fotorama.css">
 </head>
 
 <body class="text-center">
-
-  <?php
-    require_once('conexao.php');
-    require_once('banco-jogo.php');
-    require_once('banco-plataforma.php');
-    require_once('banco-genero.php');
-    require_once('class/Jogo.php');
-    require_once('class/Plataforma.php');
-    require_once('class/Genero.php');
-    require_once('class/Galeria.php');
-
-    $idExibicao = $_REQUEST['id'];
-    $jogo = buscaJogo($idExibicao, $conexao);
-    $plataformas = buscaPlataforma($jogo->getId(), $conexao);
-    $generos = buscaGenero($jogo->getId(), $conexao);
-    $galeria = buscaGaleria($jogo->getId(), $conexao);
-   ?>
-
   <div class="d-flex p-3 mx-auto flex-column col-12">
     <header class="cover-container masthead mb-auto mx-auto">
       <div class="inner">
@@ -48,7 +34,7 @@
         <h4 class="pr-3">Gêneros:</h4>
         <p>
             <?php $contador = 0;
-            foreach($generos as $genero){
+            foreach($jogo->getGeneros() as $genero){
                 if ($contador>0) echo ", ";
                 echo utf8_encode($genero->getNome());
                 $contador++;
@@ -60,7 +46,7 @@
         <h4 class="pr-3">Plataformas:</h4>
         <p>
             <?php $contador = 0;
-            foreach($plataformas as $plataforma){
+            foreach($jogo->getPlataformas() as $plataforma){
                 if ($contador>0) echo ", ";
                 echo utf8_encode($plataforma->getNome());
                 $contador++;
@@ -75,13 +61,13 @@
     <div class="galeria mx-auto">
       <div class="fotorama img-fluid" data-width="1000" data-nav="thumbs" data-loop="true" data-keyboard="true" data-thumbwidth="100" data-thumbheight="70">
 
-        <?php foreach ($galeria->getPaths() as $imagem) { ?>
+        <?php foreach ($jogo->getGaleria()->getPaths() as $imagem): ?>
       <img src="./img/img-jogos/<?= $imagem ?>">
-        <?php } ?>
+        <?php endforeach ?>
 
       </div>
       <!-- CASO SEJA O RED BAD RECOVERY 2 -->
-      <?php if ($idExibicao == 6) {?>
+      <?php if ($idExibicao == 6) :?>
 
           <div class="row pt-5 mx-auto text-center quotes">
             <div class="col-7 col-sm-5 col-md-3 mx-auto bg-main-lighter p-3 m-3">
@@ -99,7 +85,7 @@
             </div>
           </div>
 
-      <?php } ?>
+      <?php endif ?>
     </div>
 
     </div>
