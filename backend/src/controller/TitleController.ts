@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import Title from "../model/Title";
+import { Title, Screenshot, Platform, Genre } from "../model/Types";
 import db from "../database/connection";
 
 export default class TitleController {
-    async findAllTitles(request: Request, response: Response) {
+    async index(request: Request, response: Response) {
         try {
-            const titles = await db('jogo');
+            const titles = await db<Title>('title');
             return response.json({ titles });
         }
         catch (err) {
@@ -14,57 +14,63 @@ export default class TitleController {
         }
     }
 
-    async findTitleById(request: Request, response: Response) {
+    async findById(request: Request, response: Response) {
         const { id } = request.params;
         console.log(id);
-        try{
-            const title = await db('jogo').where('jogo.id','=',id)
-            return response.json({title});
+        try {
+            const title = await db<Title>('title').where('title.id', '=', id)
+            return response.json(title[0]);
         }
-        catch(err){
+        catch (err) {
             console.error(err);
-            return response.status(400).json({error: err})
+            return response.status(400).json({ error: err })
         }
     }
 
     async getScreenshotsByTitleId(request: Request, response: Response) {
         const { id } = request.params;
-        try{
-            const screenshots = await db('galeria_jogos')
-                .select('caminho')
-                .where('galeria_jogos.id_jogo','=',id)
+        try {
+            const screenshots = await db<Screenshot>('screenshot')
+                .where('screenshot.title_id', '=', id)
             return response.json(screenshots);
         }
-        catch(err){
+        catch (err) {
             console.error(err);
-            return response.status(400).json({error: err})
+            return response.status(400).json({ error: err })
+        }
+    }
+
+    async getPlatformsById(request: Request, response: Response) {
+        const { id } = request.params;
+        console.log(id);
+        try {
+            const platforms = await db<Platform>('platform')
+                .select('platform.id', 'platform.name')
+                .leftJoin('rl_platform', 'rl_platform.platform_id', 'platform.id')
+                .leftJoin('title', 'rl_platform.title_id', 'title.id')
+                .where('title.id', id);
+            return response.json(platforms);
+        }
+        catch (err) {
+            console.error(err);
+            return response.status(400).json({ error: err })
+        }
+    }
+
+    async getGenresById(request: Request, response: Response) {
+        const { id } = request.params;
+        console.log(id);
+        try {
+            const genres = await db<Genre>('genre')
+                .select('genre.id', 'genre.name')
+                .leftJoin('rl_genre', 'rl_genre.genre_id', 'genre.id')
+                .leftJoin('title', 'rl_genre.title_id', 'title.id')
+                .where('title.id', id);
+            return response.json(genres);
+        }
+        catch (err) {
+            console.error(err);
+            return response.status(400).json({ error: err })
         }
     }
 }
-
-// public function carregaPlataformas(){
-//     $lista= Plataforma::listarPorJogo($this->id);
-//     foreach($lista  as $linha){
-//         $plataforma = new Plataforma($linha['id'], $linha['nome']);
-//         array_push($this->plataformas, $plataforma);
-//     }
-// }
-// public function carregaGeneros(){
-//     $lista= Genero::listarPorJogo($this->id);
-//     foreach($lista  as $linha){
-//         $genero = new Genero($linha['id'], $linha['nome']);
-//         array_push($this->generos, $genero);
-//     }
-// }
-// public function listaGaleria(){
-//     $query = "SELECT * FROM `galeria_jogos` WHERE `id_jogo` = :id";
-
-//     $conexao = Conexao::getConexao();
-//     $stmnt = $conexao->prepare($query);
-//     $stmnt->bindValue(':id', $this->id);
-
-//     $stmnt->execute();
-//     $lista = $stmnt->fetchAll();
-//     return $lista;
-
-// }
