@@ -16,9 +16,11 @@ export default class TitleController {
 
     async findById(request: Request, response: Response) {
         const { id } = request.params;
-        console.log(id);
         try {
             const title = await db<Title>('title').where('title.id', '=', id)
+            if (title.length === 0){
+                return response.status(404).json({error: "Title not found"})
+            }
             return response.json(title[0]);
         }
         catch (err) {
@@ -30,6 +32,9 @@ export default class TitleController {
     async getScreenshotsByTitleId(request: Request, response: Response) {
         const { id } = request.params;
         try {
+            if (!await TitleController.doesTitleExist(id)){
+                return response.status(404).json({error: "Title not found"})
+            }
             const screenshots = await db<Screenshot>('screenshot')
                 .where('screenshot.title_id', '=', id)
             return response.json(screenshots);
@@ -42,8 +47,10 @@ export default class TitleController {
 
     async getPlatformsById(request: Request, response: Response) {
         const { id } = request.params;
-        console.log(id);
         try {
+            if (!await TitleController.doesTitleExist(id)){
+                return response.status(404).json({error: "Title not found"})
+            }
             const platforms = await db<Platform>('platform')
                 .select('platform.id', 'platform.name')
                 .leftJoin('rl_platform', 'rl_platform.platform_id', 'platform.id')
@@ -59,8 +66,10 @@ export default class TitleController {
 
     async getGenresById(request: Request, response: Response) {
         const { id } = request.params;
-        console.log(id);
         try {
+            if (!await TitleController.doesTitleExist(id)){
+                return response.status(404).json({error: "Title not found"})
+            }
             const genres = await db<Genre>('genre')
                 .select('genre.id', 'genre.name')
                 .leftJoin('rl_genre', 'rl_genre.genre_id', 'genre.id')
@@ -72,5 +81,18 @@ export default class TitleController {
             console.error(err);
             return response.status(400).json({ error: err })
         }
+    }
+
+    static async doesTitleExist(id:string): Promise<boolean>  {
+        try{
+            const title = await db<Title>('title').where('title.id', '=', id)  
+            if (title.length === 0){
+                return false;
+            }
+        }
+        catch(err){
+            console.error(err);
+        }
+        return true;
     }
 }
