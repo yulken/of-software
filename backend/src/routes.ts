@@ -17,11 +17,10 @@ routes.get('/titles', titleController.index);
 routes.get('/titles/:id', titleController.findById);
 routes.get('/titles/:id/platforms', titleController.getPlatformsById);
 routes.get('/titles/:id/genres', titleController.getGenresById);
+routes.get('/titles/:id/screenshots', titleController.getScreenshotsByTitleId);
 
-routes.get('/screenshots/:id', titleController.getScreenshotsByTitleId);
-
-routes.get('/platforms/', platformController.index);
-routes.get('/genres/', genreController.index);
+routes.get('/platforms', platformController.index);
+routes.get('/genres', genreController.index);
 
 
 export default routes;
